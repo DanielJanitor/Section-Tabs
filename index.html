@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--FONT AWSOME-->
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+
+    <!--GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Contrail+One&display=swap" rel="stylesheet">
+
+    <!--BOOTSTRAP 5-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+
+    <!--My Style-->
+    <style>
+        body {
+            min-height: 100vh;
+            background-color: gainsboro;
+        }
+
+        .row{
+            border-bottom: 1px solid #777;
+        }
+
+        .logo {
+            color: #fff;
+            font-family: 'Contrail One', cursive;
+            margin-top: 0.2rem;
+            padding-top: 0.5rem;
+        }
+
+        .wrapper{
+            overflow: hidden;
+            min-height: 91vh;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .dash-list{
+            flex: 1;
+        }
+        .dash-content{
+            flex:9;
+        }
+
+        .dash-list ul{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .links{
+            width: 100%;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color:#333;
+            box-shadow: 0px 0px 2px rgba(252, 248, 248, 0.2);
+            cursor: pointer;
+            transition: 0.2s ease-in;
+        }
+
+        .links:hover{
+            background-color: #555;
+        }
+
+        .links p{
+            color: white;
+        }
+
+        .cont{
+            height: 100%;
+            display: none;
+        }
+        .cont p{
+            padding:4rem; 
+            font-size: 20px;
+            line-height: 2;
+        }
+
+        .activeLink{
+            background-color: #555;
+        }
+
+        .activeContent{
+            padding: 5rem;
+            display: block;
+            text-align: center;
+        }
+
+    </style>
+    <title>Tabs</title>
+
+</head>
+
+<body>
+    <div class="row pt-1 m-0 bg-dark">
+        <div class="col-md-3 d-flex justify-content-center align-items-center">
+            <div>
+                <h1 class="logo">JD</h1>
+            </div>
+        </div>
+        <div class="col-md-6 p-2">
+            <div class="nav d-flex justify-content-center">
+                <h2 class="text-light align-self-center">Tab Section</h2>
+            </div>
+        </div>
+        <div class="col-md-3 d-flex justify-content-center align-items-center">
+            <h5 class="text-light date"></h5>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="dash-list">
+            <ul class="fw-bold">
+                <li class="links activeLink" id="content1"><p>Pages</p></li>
+                <li class="links" id="content2"><p>Blogs</p></li>
+                <li class="links" id="content3"><p>Accesories</p></li>
+                <li class="links" id="content4"><p>Perfomance</p></li>
+                <li class="links" id="content5"><p>Visitors</p></li>
+            </ul>
+        </div>
+        <div class="dash-content">
+            <div class="cont content1 activeContent">
+                <h1>Pages</h1>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis dolorum a eos libero similique esse magni impedit nostrum minus excepturi, porro cum culpa ipsum possimus necessitatibus qui harum rerum quasi?</p>
+            </div>
+            <div class="cont content2">
+                <h1>BLogs</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla vel neque esse quam incidunt voluptas cupiditate animi consequuntur ipsum facilis repellat voluptate, et autem at minima est illum labore recusandae!</p>
+            </div>
+            <div class="cont content3">
+                <h1>Accesories</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam maxime nisi quia rem! Explicabo hic beatae molestiae distinctio quod? Illum commodi, nobis sed explicabo quisquam ipsum? Ex tempore consectetur in?</p>
+            </div>
+            <div class="cont content4">
+                <h1>Perfomance</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus fugit, assumenda exercitationem perspiciatis accusamus labore, tempora dicta voluptatem debitis ea consequatur quasi praesentium iste autem nihil eum cumque ullam adipisci.</p>
+            </div>
+            <div class="cont content5">
+                <h1>Visitors</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus cumque sint modi accusamus eveniet minima debitis et quod doloremque nostrum iusto facilis, quia doloribus alias consequatur! Voluptas maiores beatae rerum.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //Date
+        let today = new Date();
+        let dd = today.getDate();
+        let mm = today.getMonth() + 1;
+        let yy = today.getFullYear();
+        let day = `${dd}.${mm}.${yy}`;
+        document.querySelector('.date').innerText = day;
+
+        //Tabs activation
+
+        const links = document.querySelectorAll('.links');
+        const conts = document.querySelectorAll('.cont');
+
+        links.forEach(link =>{
+            link.addEventListener('click', ()=>{
+                links.forEach(item =>{
+                    item.classList.remove('activeLink')
+                });
+                link.classList.add('activeLink');
+
+
+                let value = link.getAttribute('id');
+                console.log(value);
+                conts.forEach(cont =>{
+                    if (cont.classList.contains(value)) {
+                        cont.classList.add('activeContent');
+                    }
+                    else{
+                        cont.classList.remove('activeContent');
+                    }
+                })
+            });
+        })
+
+    </script>
+
+</body>
+
+</html>
